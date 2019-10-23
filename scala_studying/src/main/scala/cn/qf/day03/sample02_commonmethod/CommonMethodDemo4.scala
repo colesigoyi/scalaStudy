@@ -34,7 +34,6 @@ object CommonMethodDemo4 {
     println(s"及格的分数:${t._1}")
     println(s"不及格的分数:$team2")
     println(s"不及格的分数:${t._2}")
-
     //fold
     val num = Seq(1,2,3,4)
 //    val sum = num.fold(0)((sum, n) => sum * n)

@@ -20,9 +20,6 @@ object CommonMethodDemo1 {
     println(s"Seq中所有的元素中最xiao的元素是:${nums.min}")
     //count
     println(s"Seq中偶数元素个数是:${nums.count(_ % 2 == 0)}")
-
-
-
   }
 }
 

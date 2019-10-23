@@ -21,6 +21,4 @@ object ImmutableSetDemo extends App {
   val newNums2 = nums ++ Set(1,2,3,4,5,6)
   println(s"旧的Set集合是:$nums")
   println(s"新的Set集合是:$newNums2")
-
-
 }

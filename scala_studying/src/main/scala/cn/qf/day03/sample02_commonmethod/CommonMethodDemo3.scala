@@ -23,7 +23,6 @@ object CommonMethodDemo3 {
     lst.foreach(println)
     val newContainer:Seq[String] = lst.flatten
     println(s"传统做法:$newContainer")
-
     val newContainer2 = container.flatMap(perEle => List(perEle.toUpperCase, perEle))
     println(s"使用flaMap后:$newContainer2")
   }
