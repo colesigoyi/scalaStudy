@@ -26,6 +26,7 @@ object MethodDemo {
     add6(1,2,3,4,5)
     val nums = Array(1,2,3)
     add6(1,nums:_*)
+    val a = add2(1, 2)
 
   }
 

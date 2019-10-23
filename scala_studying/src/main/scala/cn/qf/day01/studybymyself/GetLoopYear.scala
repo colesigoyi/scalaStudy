@@ -15,16 +15,10 @@ object GetLoopYear {
   def main(args: Array[String]): Unit = {
     print("请输入年份:")
     val year = StdIn.readInt()
-    if (year % 3200 == 0){
-      println(s"${year}不是闰年")
-    }else if(year % 400 == 0) {
-      println(s"${year}是闰年")
-    }else if(year % 100 == 0) {
-      println(s"${year}不是闰年")
-    }else if(year % 4 == 0) {
-      println(s"${year}是闰年")
-    }else{
-      println(s"${year}不是闰年")
-    }
+    if (year % 3200 == 0) println(s"${year}不是闰年")
+    else if(year % 400 == 0) println(s"${year}是闰年")
+    else if(year % 100 == 0) println(s"${year}不是闰年")
+    else if(year % 4 == 0) println(s"${year}是闰年")
+    else println(s"${year}不是闰年")
   }
 }
