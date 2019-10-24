@@ -3,7 +3,7 @@ package cn.qf.day04.sample06_modelmatch.demo02_valmatch
 import scala.util.Random
 
 /**
- * Description：<br/>
+ * Description：常量模式<br/>
  * Copyright (c) ,2019 , Xuefengtao <br/>
  * This program is protected by copyright laws. <br/>
  * Date： 2019年10月24日  
@@ -22,6 +22,12 @@ object ValMatchDemo {
     val result2 = getResult2(randomWebName)
     println(s"结果是: $result2")
   }
+
+  /**
+   * 常量字面量
+   * @param randomWebName
+   * @return
+   */
   private def getResult(randomWebName: String) = {
     randomWebName match {
       case "www.sina.com" => "新浪 => www.sina.com"
@@ -29,10 +35,16 @@ object ValMatchDemo {
       case _ => "没有匹配上"
     }
   }
+
+  /**
+   * 常量变量
+   * @param randomWebName
+   * @return
+   */
   private def getResult2(randomWebName: String) = {
     randomWebName match {
       case sina => "新浪 => www.sina.com"
-      case sohu => "搜狐 => www.sohu.com"
+      case souhu => "搜狐 => www.sohu.com"
       case _ => "没有匹配上"
     }
   }

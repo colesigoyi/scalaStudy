@@ -3,7 +3,7 @@ package cn.qf.day04.sample06_modelmatch.demo01_betterswitch
 import scala.io.StdIn
 
 /**
- * Description：<br/>
+ * Description：更好的switch(方法抽取)<br/>
  * Copyright (c) ,2019 , Xuefengtao <br/>
  * This program is protected by copyright laws. <br/>
  * Date： 2019年10月24日  

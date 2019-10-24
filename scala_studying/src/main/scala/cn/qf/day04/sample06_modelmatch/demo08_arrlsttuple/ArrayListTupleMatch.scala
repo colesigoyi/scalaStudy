@@ -1,7 +1,7 @@
 package cn.qf.day04.sample06_modelmatch.demo08_arrlsttuple
 
 /**
- * Description：<br/>
+ * Description：匹配模式<br/>
  * Copyright (c) ,2019 , Xuefengtao <br/>
  * This program is protected by copyright laws. <br/>
  * Date： 2019年10月24日  

@@ -1,7 +1,7 @@
 package cn.qf.day04.sample06_modelmatch.demo05_caseclassmatch
 
 /**
- * Description：<br/>
+ * Description：样例类匹配模式<br/>
  * Copyright (c) ,2019 , Xuefengtao <br/>
  * This program is protected by copyright laws. <br/>
  * Date： 2019年10月24日  
