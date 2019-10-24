@@ -1,7 +1,7 @@
-package cn.qf.day03.sample04_trait.demo04_multitrait
+package cn.qf.day04.sample01_trait.demo04_instantsort
 
 /**
- * Description：<br/>
+ * Description：特质构造的顺序<br/>
  * Copyright (c) ,2019 , Xuefengtao <br/>
  * This program is protected by copyright laws. <br/>
  * Date： 2019年10月23日  
@@ -11,5 +11,12 @@ package cn.qf.day03.sample04_trait.demo04_multitrait
  */
 trait Logger {
   println("Logger类的实例被创建...")
-  def log(msg:String){}
+
+  /**
+   * 显示日志信息
+   * @param msg
+   */
+  def log(msg:String) = {
+    println("Logger中的方法log执行了...")
+  }
 }

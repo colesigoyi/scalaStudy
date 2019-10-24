@@ -1,4 +1,4 @@
-package cn.qf.day03.sample04_trait.demo04_multitrait
+package cn.qf.day04.sample01_trait.demo04_instantsort
 
 /**
  * Description：<br/>
@@ -12,8 +12,12 @@ package cn.qf.day03.sample04_trait.demo04_multitrait
 
 trait ConsoleLogger extends Logger {
   println("ConsoleLogger类的实例被创建")
-  override def log(msg:String){
-    println("执行ConsoleLogger")
+  /**
+   * 处理日志信息
+   * @param msg
+   */
+  override def log(msg:String) = {
+    println("执行ConsoleLogger的方法")
     println(s"日志信息:$msg")
   }
 }

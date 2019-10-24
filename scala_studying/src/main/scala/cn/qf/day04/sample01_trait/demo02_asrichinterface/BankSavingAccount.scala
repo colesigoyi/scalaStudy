@@ -1,4 +1,4 @@
-package cn.qf.day03.sample04_trait.demo04_multitrait
+package cn.qf.day04.sample01_trait.demo02_asrichinterface
 
 /**
  * Description：<br/>
@@ -11,13 +11,18 @@ package cn.qf.day03.sample04_trait.demo04_multitrait
  */
 
 class BankSavingAccount extends Account with Logger {
-  println("BankSavingAccount类的实例被创建")
   def withDraw(amount: Double) = {
     if (amount > balance)
-      log(s"警告!您银行存款的余额是:$balance 元,你现在要取款的金额是:$amount")
+      warn(s"警告!您银行存款的余额是:$balance 元,你现在要取款的金额是:$amount")
     else {
       balance -= amount
-      println(s"银行存款剩余:${balance}")
+      info(s"银行存款剩余:${balance}")
     }
   }
+
+  /**
+   * 显示日志信息
+   * @param msg
+   */
+  override def log(msg: String): Unit = println(msg)
 }

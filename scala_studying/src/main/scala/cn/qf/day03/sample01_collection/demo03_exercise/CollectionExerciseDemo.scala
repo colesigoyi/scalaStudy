@@ -32,5 +32,13 @@ object CollectionExerciseDemo {
     val sortedList:List[(String, Int)] = lst.sortWith(_._2 > _._2)
     //7.将排序后的结果输出
     sortedList.foreach(perEle => println(perEle._1 + "\t" + perEle._2))
+
+    words.flatMap(_.split("\\s+"))
+      .map((_, 1))
+      .groupBy(_._1)
+      .mapValues(_.size)
+      .toList
+      .sortWith(_._2 > _._2)
+      .foreach(perEle => println(perEle._1 + "\t" + perEle._2))
   }
 }

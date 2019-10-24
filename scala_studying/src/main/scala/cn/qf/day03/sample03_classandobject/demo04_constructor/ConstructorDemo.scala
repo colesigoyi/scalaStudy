@@ -18,5 +18,4 @@ object ConstructorDemo extends App{
   println(stu2)
   println(stu3)
   println(stu4)
-
 }

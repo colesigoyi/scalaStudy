@@ -19,7 +19,27 @@ object WithMultiTraitDemo {
     日志信息:2019-10-23T09:58:3...
     */
     val account = new BankSavingAccount with ConsoleLogger with ShortLogger with TimeLogger
+    println("------------")
+    new BankSavingAccount with ConsoleLogger with ShortLogger with TimeLogger
     account.withDraw(2002)
-
+    /*
+    Account类的实例被创建
+    Logger类的实例被创建...
+    BankSavingAccount类的实例被创建
+    ConsoleLogger类的实例被创建
+    ShortLogger类的实例被创建
+    TimeLogger类的实例被创建了
+    ------------
+    Account类的实例被创建
+    Logger类的实例被创建...
+    BankSavingAccount类的实例被创建
+    ConsoleLogger类的实例被创建
+    ShortLogger类的实例被创建
+    TimeLogger类的实例被创建了
+    执行TimeLogger
+    执行ShortLogger
+    执行ConsoleLogger
+    日志信息:2019-10-24T12:37:0...
+         */
   }
 }

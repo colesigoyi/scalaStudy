@@ -1,4 +1,4 @@
-package cn.qf.day03.sample04_trait.demo04_multitrait
+package cn.qf.day04.studybymyself.demo01_abstractclass
 
 /**
  * Description：<br/>
@@ -9,7 +9,7 @@ package cn.qf.day03.sample04_trait.demo04_multitrait
  * @author 陶雪峰
  * @version : 1.0
  */
-trait Logger {
-  println("Logger类的实例被创建...")
-  def log(msg:String){}
+trait Buffer {
+  type T
+  val element: T
 }

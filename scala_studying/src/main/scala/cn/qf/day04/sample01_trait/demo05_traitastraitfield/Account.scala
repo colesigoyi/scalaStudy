@@ -1,7 +1,7 @@
-package cn.qf.day03.sample04_trait.demo04_multitrait
+package cn.qf.day04.sample01_trait.demo05_traitastraitfield
 
 /**
- * Description：<br/>
+ * Description：初始化特质中的字段<br/>
  * Copyright (c) ,2019 , Xuefengtao <br/>
  * This program is protected by copyright laws. <br/>
  * Date： 2019年10月23日  
@@ -11,7 +11,6 @@ package cn.qf.day03.sample04_trait.demo04_multitrait
  */
 
 abstract class Account {
-  println("Account类的实例被创建")
   /**
    * 余额
    */
