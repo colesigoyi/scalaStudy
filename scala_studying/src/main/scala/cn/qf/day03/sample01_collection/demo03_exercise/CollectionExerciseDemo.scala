@@ -20,14 +20,19 @@ object CollectionExerciseDemo {
     //步骤
     //1.将集合中所有的单词取出,至于一个全新的集合中(flaMap)
     val perWordList:Seq[String] = words.flatMap(_.split("\\s+"))
+    println(perWordList)
     //2.将集合中每个元素变形为元组(map)
     val tupleList:Seq[(String,Int)] = perWordList.map((_,1))
+    println(tupleList)
     //3.根据集合中每个元素(元组)的key进行分组(groupBy)
     val mapResult:Map[String, Seq[(String, Int)]] = tupleList.groupBy(_._1)
+    println(mapResult)
     //4.分析map集合中每个元素的值(List集合),集合的长度即是单词出现的次数(mapValue)
     val newmapResult:Map[String, Int] = mapResult.mapValues(_.size)
+    println(newmapResult)
     //5.将map集合转化为List集合(toList)
     val lst:List[(String, Int)] = newmapResult.toList
+    println(lst)
     //6.对List中每个元素进行降序排列
     val sortedList:List[(String, Int)] = lst.sortWith(_._2 > _._2)
     //7.将排序后的结果输出

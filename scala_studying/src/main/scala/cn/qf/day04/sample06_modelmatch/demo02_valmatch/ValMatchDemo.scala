@@ -12,17 +12,17 @@ import scala.util.Random
  * @version : 1.0
  */
 object ValMatchDemo {
-  val sina = "www.sina.com"
-  val souhu = "www.souhu.com"
+  val SINA = "www.sina.com"
+  val SOHU = "www.souhu.com"
   def main(args: Array[String]): Unit = {
-    val arr = Array(sina, souhu)
+    val arr = Array(SINA, SOHU)
     val randomWebName = arr(Random.nextInt(arr.length))
     //常量字面量
     val result = getResult(randomWebName)
     val result2 = getResult2(randomWebName)
+    println(s"结果是: $result")
     println(s"结果是: $result2")
   }
-
   /**
    * 常量字面量
    * @param randomWebName
@@ -35,7 +35,6 @@ object ValMatchDemo {
       case _ => "没有匹配上"
     }
   }
-
   /**
    * 常量变量
    * @param randomWebName
@@ -43,8 +42,8 @@ object ValMatchDemo {
    */
   private def getResult2(randomWebName: String) = {
     randomWebName match {
-      case sina => "新浪 => www.sina.com"
-      case souhu => "搜狐 => www.sohu.com"
+      case SINA => "新浪 => www.sina.com"
+      case SOHU => "搜狐 => www.sohu.com"
       case _ => "没有匹配上"
     }
   }
