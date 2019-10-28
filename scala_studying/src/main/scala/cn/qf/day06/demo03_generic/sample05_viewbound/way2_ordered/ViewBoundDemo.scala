@@ -24,7 +24,7 @@ object ViewBoundDemo {
    *
    * @param firse
    * @param second
-   * @tparam T  T <% Comparable[T] 使用了泛型之视界
+   * @tparam T  T <% Ordered[T] 使用了泛型之视界
    * @return
    */
   def getBigger[T <% Ordered[T]](firse:T, second:T): T = {
