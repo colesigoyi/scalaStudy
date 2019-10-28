@@ -1,4 +1,4 @@
-package cn.qf.day06.demo03_generic.sample05_viewbound
+package cn.qf.day06.demo03_generic.sample05_viewbound.way2_ordered
 
 /**
  * Description：<br/>
@@ -27,7 +27,7 @@ object ViewBoundDemo {
    * @tparam T  T <% Comparable[T] 使用了泛型之视界
    * @return
    */
-  def getBigger[T <% Comparable[T]](firse:T, second:T) = {
-    if(firse.compareTo(second) > 0) firse else second
+  def getBigger[T <% Ordered[T]](firse:T, second:T): T = {
+    if(firse > second) firse else second
   }
 }
