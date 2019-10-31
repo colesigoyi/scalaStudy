@@ -1,7 +1,5 @@
 package cn.qf.day04.sample03_object.demo02_apply
 
-import com.sun.tools.corba.se.idl.StringGen
-
 /**
  * Description：伴生对象,伴生类<br/>
  * Copyright (c) ,2019 , Xuefengtao <br/>
