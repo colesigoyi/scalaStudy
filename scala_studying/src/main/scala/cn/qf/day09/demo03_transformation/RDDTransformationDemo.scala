@@ -27,10 +27,10 @@ object RDDTransformationDemo {
     val rdd:RDD[Int] = sc.parallelize(Seq(1,2,3,4))
 
     //转换算子的惰性演示
-//    rdd.filter(perEle => {
-//      println(s"-----执行:当前线程名是:${Thread.currentThread().getName}-----")
-//      perEle % 2 == 0
-//    }).foreach(println)
+    rdd.filter(perEle => {
+      println(s"-----执行:当前线程名是:${Thread.currentThread().getName}-----")
+      perEle % 2 == 0
+    }).foreach(println)
 
     //map:参数指定的函数依次作用域rdd中每个元素,将函数执行后的结果置于全新的rdd中存储起来
     val resultRDD = rdd.map(_ * 2)
@@ -47,7 +47,7 @@ object RDDTransformationDemo {
 
     println("-------------sample随机采样-----------------")
     //sample随机采样
-    sc.parallelize(1 to 10)
+    sc.parallelize(1 to 20)
       //sample算子有如下参数:
       //withReplacement
       //Fraction:
@@ -55,9 +55,10 @@ object RDDTransformationDemo {
       .sample(withReplacement = false, 0.5)//false表示不放回,新的rdd中有新的元素就不放回
       .collect()
       .toBuffer
+      //.sorted
         .foreach(println)
 
-    println("--------------union:将两个rdd中的所有元素合并----------------")
+    println("--------union:将两个rdd中的所有元素合并----------------")
     //union:将两个rdd中的所有元素合并
     sc.parallelize(1 to 5).union(sc.parallelize(5 to 10)).collect().foreach(println)
 
@@ -138,6 +139,17 @@ object RDDTransformationDemo {
     /*
     (2,CompactBuffer((jack,23)))
     (1,CompactBuffer((tom,19), (marry,20)))
+     */
+
+    println("----------------cogroup:不进行局部,直接分组,在合并--------------")
+    //cogroup:先进行局部分组,再进行全局分组(当前的rdd和参数指定的rdd现根据key进行分组),然后两个局部分组后的结果进行全局分组
+    val rdd4 = sc.parallelize(Seq((1,("tom", 19)),(1,("marry", 20)),(2,("jack",23))))
+    val rdd5 = sc.parallelize(Seq((2,("lily", 19)),(1,("tom", 20)),(2,("lisa",23))))
+    val rddCoGroupRDD:RDD[(Int,(Iterable[(String, Int)],Iterable[(String, Int)]))] = rdd4.cogroup(rdd5)
+    rddCoGroupRDD.foreach(println)
+    /*
+    (1,(CompactBuffer((tom,19), (marry,20)),CompactBuffer((tom,20))))
+    (2,(CompactBuffer((jack,23)),CompactBuffer((lily,19), (lisa,23))))
      */
     //资源释放
     spark.stop()

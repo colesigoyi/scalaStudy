@@ -34,6 +34,7 @@ val sc = new SparkContext(conf)
       .filter(_.trim != "")
       .map((_,1))
       .reduceByKey(_ + _)
+        .sortBy(_._1,false, 1)
     reduceRDD.saveAsTextFile(outputPath)
     sc.stop
   }
