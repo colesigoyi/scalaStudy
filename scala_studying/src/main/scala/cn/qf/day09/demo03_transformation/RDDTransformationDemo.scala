@@ -151,7 +151,102 @@ object RDDTransformationDemo {
     (1,(CompactBuffer((tom,19), (marry,20)),CompactBuffer((tom,20))))
     (2,(CompactBuffer((jack,23)),CompactBuffer((lily,19), (lisa,23))))
      */
+
+    println("----------------mapPartitions--------------")
+    //mapPartitions:rdd中高性能算子,每次分析的rdd中一个分区的数据,若一个rdd分成三个分区,
+    // 那么,该方法的参数所制定的函数只会执行三次,能大幅提升程序运行效率
+    val numRDD = sc.parallelize(1 to 10, 3)//3表示3个分区
+    //原生写法:每一次将当前中的数据拿到迭代器中
+    //val rddPartition:RDD[Int] = numRDD.mapPartitions(itr => {
+    //  println(s"partitions运行")
+    //  tr.map(_ * 2)
+    //})
+    //rddPartition.foreach(println)
+
+    //第一个下划线表示Iterator,第二个下划线表示Iterator中的每个元素
+    val rddPartition:RDD[Int] = numRDD.mapPartitions(_.map(_ * 2))
+    rddPartition.foreach(println)
+    /*
+    8
+    14
+    16
+    18
+    20
+    2
+    10
+    12
+    4
+    6
+     */
+
+    println("----------------mapPartitionWithIndex--------------")
+    //mapPartitionWithIndex:与上述mapPartitions的作用相同,用于分析相应分区及其编号
+//    numRDD.mapPartitionsWithIndex((index, itr) => {
+//      itr.map((_, index))//index表示当前分区编号
+//    }).foreach(println)
+    numRDD.mapPartitionsWithIndex(itr).foreach(println)
+    //rawMod + (if(rawMod < 0) mod else 0)
+    /*
+    (1,0)
+    (2,0)
+    (3,0)
+
+    (4,1)
+    (5,1)
+    (6,1)
+
+    (7,2)
+    (8,2)
+    (9,2)
+    (10,2)
+     */
+
+    println("-----------------sortByKey-------------")
+    //sortByKey:要求rdd中每个元素是对偶元组,且key是可排序的
+    sc.parallelize(List(2,3,6,1,-1,10,8)).map((_, ""))
+        .sortByKey(ascending = false, 1)//false表示降序
+//        .foreach(println)
+      .foreach(perEle => println(perEle._1))
+    /*
+    10
+    8
+    6
+    3
+    2
+    1
+    -1
+     */
+
+    println("-----------------sortBy排序-------------")
+    //sortBy:对rdd的元素进行排序,元素的类型不要求是对偶元组,参数要指定排序规则
+    sc.parallelize(List(2,3,6,1,-1,10,8,24,12,45,11))
+        .sortBy(x => x,true)//默认使用电脑最大线程数
+        .foreach(println)
+//        .saveAsTextFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/" +
+//          "09_scala/scala_studying/log/output6")
+    /*
+    -1
+    1
+    2
+    3
+    6
+    8
+    10
+    11
+    12
+    24
+    45
+     */
+    println("---------测试------------")
+    val ss:RDD[(String, Int)] = sc.parallelize(Seq(("tom", 19),("marry", 20),("jack",23)))
+    ss.keys
+        .sortBy(k => k,false, 1)
+      .saveAsTextFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/" +
+              "09_scala/scala_studying/log/output7")
+
     //资源释放
     spark.stop()
   }
+  def itr = (index:Int, itr:Iterator[Int]) => itr.map((_, index)) //index表示当前分区编号
+  def itr2 : (Int, Iterator[Int]) => Iterator[(Int, Int)] = (index, itr) => itr.map((_, index)) //index表示当前分区编号
 }
