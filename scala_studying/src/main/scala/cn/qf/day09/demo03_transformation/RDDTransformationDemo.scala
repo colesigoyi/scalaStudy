@@ -74,23 +74,71 @@ object RDDTransformationDemo {
     val s1 = sc.parallelize(Seq(("tom", 19),("marry", 20),("jack",23)))
     val s2 = sc.parallelize(Seq(("tom", "杭州"),("marry", "武汉"),("lucy","合肥")))
     val joinRDD:RDD[(String,(Int, String))] = s1.join(s2)
-    println("名字  年龄  籍贯")
-    joinRDD.foreach(perEle => println(perEle._1 + " " + perEle._2._1 + " " + perEle._2._2))
+    println("名字\t年龄\t籍贯")
+    joinRDD.foreach(perEle => println(perEle._1 + "\t" + perEle._2._1 + "\t" + perEle._2._2))
+    /*
+    名字  年龄  籍贯
+    marry 20 武汉
+    tom 19 杭州
+     */
 
     println("----------------leftOuterJoin:左外连接--------------")
     //leftOuterJoin:左外连接
     val result:RDD[(String,(Int, Option[String]))] = s1.leftOuterJoin(s2)
     result.foreach(println)
+    /*
+    (marry,(20,Some(武汉)))
+    (tom,(19,Some(杭州)))
+    (jack,(23,None))
+     */
 
     println("----------------rightOuterJoin:右外连接--------------")
     //rightOuterJoin:右外连接
     val result2:RDD[(String,(Option[Int], String))] = s1.rightOuterJoin(s2)
     result2.foreach(println)
+    /*
+    (lucy,(None,合肥))
+    (marry,(Some(20),武汉))
+    (tom,(Some(19),杭州))
+     */
 
     println("----------------cartesian:求笛卡尔积--------------")
     //cartesian:求笛卡尔积
     val result3:RDD[((String,Int),(String,String))] = s1.cartesian(s2)
     result3.foreach(println)
+    /*
+    ((tom,19),(marry,武汉))
+    ((tom,19),(lucy,合肥))
+    ((tom,19),(tom,杭州))
+    ((marry,20),(tom,杭州))
+    ((marry,20),(marry,武汉))
+    ((marry,20),(lucy,合肥))
+    ((jack,23),(marry,武汉))
+    ((jack,23),(lucy,合肥))
+    ((jack,23),(tom,杭州))
+     */
+
+    println("----------------groupBy:分组--------------")
+    //groupBy:分组,根据特定的元素进行分组,会进行全局聚合,但是没有预(本地)聚合,reduceByKey = 本地聚合 + 全局聚合
+    //源RDD中每个元素不要求是对偶元组
+    val rdd2 = sc.parallelize(Seq((1,"tom", 19),(1,"marry", 20),(2,"jack",23)))
+    val rddGroupRDD:RDD[(Int,Iterable[(Int, String, Int)])] = rdd2.groupBy(_._1)
+    rddGroupRDD.foreach(println)
+    /*
+    (2,CompactBuffer((2,jack,23)))
+    (1,CompactBuffer((1,tom,19), (1,marry,20)))
+     */
+
+    println("----------------groupByKey:根据特定元素分组--------------")
+    //groupByKey:根据rdd中每个对偶元组的key进行分组,会进行全局聚合,但是没有预聚合
+    //源RDD必须是对偶元组
+    val rdd3 = sc.parallelize(Seq((1,("tom", 19)),(1,("marry", 20)),(2,("jack",23))))
+    val rddGroupRDDByKey:RDD[(Int,Iterable[(String, Int)])] = rdd3.groupByKey()
+    rddGroupRDDByKey.foreach(println)
+    /*
+    (2,CompactBuffer((jack,23)))
+    (1,CompactBuffer((tom,19), (marry,20)))
+     */
     //资源释放
     spark.stop()
   }
