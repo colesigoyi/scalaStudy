@@ -77,14 +77,16 @@ public class WordCountDemo {
 
 
         //排序
-        JavaPairRDD<Integer, String> swapRDD = reduceAfterRDD.mapToPair(new PairFunction<Tuple2<String, Integer>, Integer, String>() {
+        JavaPairRDD<Integer, String> swapRDD = reduceAfterRDD
+                .mapToPair(new PairFunction<Tuple2<String, Integer>, Integer, String>() {
             @Override
             public Tuple2<Integer, String> call(Tuple2<String, Integer> oldTuple) throws Exception {
                 return oldTuple.swap();
             }
         });
 
-        JavaPairRDD<String, Integer> resultTuple =  swapRDD.sortByKey(false, 1).mapToPair(new PairFunction<Tuple2<Integer, String>, String, Integer>() {
+        JavaPairRDD<String, Integer> resultTuple =  swapRDD.sortByKey(false, 1)
+                .mapToPair(new PairFunction<Tuple2<Integer, String>, String, Integer>() {
             @Override
             public Tuple2<String, Integer> call(Tuple2<Integer, String> tmpTuple) throws Exception {
                 return tmpTuple.swap();

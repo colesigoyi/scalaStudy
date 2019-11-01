@@ -9,14 +9,14 @@ package cn.qf.day09.demo02_wordcount;/**
  */
 
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaPairRDD;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.*;
+import org.apache.spark.api.java.function.ForeachFunction;
+import org.apache.spark.api.java.function.VoidFunction;
+import org.apache.spark.sql.Row;
+import scala.Int;
 import scala.Tuple2;
 
 import java.util.Arrays;
-import java.util.Iterator;
 
 /**
  * @ program: scala_studying
@@ -39,9 +39,7 @@ public class WordCountDemo2 {
         String outputPath = args[1].trim();
         //3.步骤
         //1.SparkConf
-        SparkConf conf = new SparkConf();
-        conf.setMaster("local[*]");
-        conf.setAppName(WordCountDemo2.class.getSimpleName());
+        SparkConf conf = new SparkConf().setMaster("local[*]").setAppName(WordCountDemo2.class.getSimpleName());
 
         //SparkContext
         JavaSparkContext jsc = new JavaSparkContext(conf);
@@ -60,7 +58,10 @@ public class WordCountDemo2 {
                 .mapToPair(Tuple2::swap)
                 .sortByKey(false,1)
                 .mapToPair(Tuple2::swap)
-                .saveAsTextFile(outputPath);
+                .foreach(result -> System.out.println(result));
+                //.foreach((VoidFunction<Tuple2<String, Integer>>) System.out::println);
+                //.saveAsTextFile(outputPath);
+
         //资源释放
         jsc.stop();
     }

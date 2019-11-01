@@ -25,17 +25,18 @@ object WordCountApplication{
     val inputPath = args(0).trim
     val outputPath = args(1).trim
 
-    val conf = new SparkConf()//.setMaster("local[*]")
+    val conf = new SparkConf().setMaster("local[*]")
                 .setAppName(WordCountApplication
                 .getClass.getSimpleName)
-val sc = new SparkContext(conf)
+    val sc = new SparkContext(conf)
     val reduceRDD: RDD[(String, Int)] = sc.textFile(inputPath)
       .flatMap(_.split("\\s+"))
       .filter(_.trim != "")
       .map((_,1))
       .reduceByKey(_ + _)
         .sortBy(_._1,false, 1)
-    reduceRDD.saveAsTextFile(outputPath)
+    //reduceRDD.saveAsTextFile(outputPath)
+    reduceRDD.foreach(println)
     sc.stop
   }
 }

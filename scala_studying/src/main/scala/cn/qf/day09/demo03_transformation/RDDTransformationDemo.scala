@@ -75,6 +75,7 @@ object RDDTransformationDemo {
     val s1 = sc.parallelize(Seq(("tom", 19),("marry", 20),("jack",23)))
     val s2 = sc.parallelize(Seq(("tom", "杭州"),("marry", "武汉"),("lucy","合肥")))
     val joinRDD:RDD[(String,(Int, String))] = s1.join(s2)
+
     println("名字\t年龄\t籍贯")
     joinRDD.foreach(perEle => println(perEle._1 + "\t" + perEle._2._1 + "\t" + perEle._2._2))
     /*
