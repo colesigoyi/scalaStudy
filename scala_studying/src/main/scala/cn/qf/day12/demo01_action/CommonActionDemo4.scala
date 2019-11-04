@@ -13,7 +13,7 @@ import cn.qf.day10.demo01_transformation.SparkUtil
  */
 object CommonActionDemo4 {
   def main(args: Array[String]): Unit = {
-    val spark = SparkUtil.getSparkSession(CommonActionDemo.getClass.getName,"local[*]")
+    val spark = SparkUtil.getSparkSession(CommonActionDemo2.getClass.getName,"local[*]")
     val sc = spark.sparkContext
     //
     val rdd = sc.parallelize(Seq(("jack", 5),("marry", 6),("jack", 5),("tom", 3)),1)
@@ -27,6 +27,5 @@ object CommonActionDemo4 {
     //java中的api:序列化:将内存中的数据输出到磁盘或网络:ObjectOutputStream
     //           反序列化:读取网络或磁盘内容到内存:ObjectInputStream
     rdd.saveAsObjectFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/09_scala/scala_studying/log/outputTest3")
-
   }
 }

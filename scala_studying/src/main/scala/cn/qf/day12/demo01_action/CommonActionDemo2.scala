@@ -13,7 +13,7 @@ import cn.qf.day10.demo01_transformation.SparkUtil
  */
 object CommonActionDemo2 {
   def main(args: Array[String]): Unit = {
-    val spark = SparkUtil.getSparkSession(CommonActionDemo.getClass.getName,"local[*]")
+    val spark = SparkUtil.getSparkSession(CommonActionDemo2.getClass.getName,"local[*]")
     val sc = spark.sparkContext
     //
     val rdd = sc.parallelize(Seq(3, 4, 5, 1, 0, 9))
