@@ -36,6 +36,7 @@ object Test2 {
           "09_scala/scala_studying/log/testdata.txt")
           val a = context.filter(line => line.contains("a"))
           val b = context.filter(line => line.contains("b"))
+          val ab = context.filter(line => line.contains("b") && line.contains("b"))
         println("包含\"a\"的句子是:")
         a.foreach(println)
 //
