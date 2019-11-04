@@ -24,5 +24,9 @@ object CommonActionDemo4 {
     rdd.saveAsSequenceFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/09_scala/scala_studying/log/outputTest2")
 
     //saveAsObjectFile(path)
+    //java中的api:序列化:将内存中的数据输出到磁盘或网络:ObjectOutputStream
+    //           反序列化:读取网络或磁盘内容到内存:ObjectInputStream
+    rdd.saveAsObjectFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/09_scala/scala_studying/log/outputTest3")
+
   }
 }
