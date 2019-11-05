@@ -1,5 +1,7 @@
-package cn.qf.util;/**
- * Description：<br/>
+package cn.qf.util;
+
+/**
+ * Description：DBCP连接池操作工具类<br/>
  * Copyright (c) ,2019 , Xuefengtao <br/>
  * This program is protected by copyright laws. <br/>
  * Date： 2019年11月04日
@@ -8,7 +10,14 @@ package cn.qf.util;/**
  * @version : 1.0
  */
 
+import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.dbcp.BasicDataSourceFactory;
+
 import javax.sql.DataSource;
+import javax.xml.crypto.Data;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * @ program: scala_studying
@@ -18,9 +27,23 @@ import javax.sql.DataSource;
  **/
 
 public class DBCPUtil {
+    private static DataSource pool;
 
-    public static DataSource getConnectPool() {
-        return null;
+    static {
+        Properties properties = new Properties();
+        try {
+            properties.load(DBCPUtil.class.getClassLoader().getResourceAsStream("dbcp.properties"));
+            pool = BasicDataSourceFactory.createDataSource(properties);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static DataSource getConnectionPool() {
+        return pool;
+    }
+    public static Connection getConnection() throws SQLException {
+        return pool.getConnection();
     }
 
 }

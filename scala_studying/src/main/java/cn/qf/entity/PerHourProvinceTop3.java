@@ -18,7 +18,65 @@ package cn.qf.entity;/**
 public class PerHourProvinceTop3 {
     private int id;
     private String province;
-    private String date;
-    private int adid;
     private String hour;
+    private int adId;
+    private int cnt;
+
+    public PerHourProvinceTop3() {
+    }
+
+    public PerHourProvinceTop3(int id, String province, String hour, int adId, int cnt) {
+        this.id = id;
+        this.province = province;
+        this.hour = hour;
+        this.adId = adId;
+        this.cnt = cnt;
+    }
+
+    public PerHourProvinceTop3(String province, String hour, int adId, int cnt) {
+        this.province = province;
+        this.hour = hour;
+        this.adId = adId;
+        this.cnt = cnt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
+    }
+
+    public int getAdId() {
+        return adId;
+    }
+
+    public void setAdId(int adId) {
+        this.adId = adId;
+    }
+
+    public int getCnt() {
+        return cnt;
+    }
+
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
+    }
 }

@@ -27,7 +27,9 @@ class MySelfAccumulator extends AccumulatorV2[String,ListBuffer[String]]{
    * 将当前累加器的实例拷贝一份到别的线程实例中,每个线程实例负责累积自己的rdd分区中的元素
    * @return
    */
-  override def copy(): AccumulatorV2[String, ListBuffer[String]] = new MySelfAccumulator
+  override def copy(): AccumulatorV2[String, ListBuffer[String]] = {
+    new MySelfAccumulator
+  }
 
   /**
    * 将拷贝过去的累加器实例中的属性container置为空
