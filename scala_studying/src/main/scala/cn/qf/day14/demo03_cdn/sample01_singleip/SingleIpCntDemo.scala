@@ -16,8 +16,9 @@ object SingleIpCntDemo extends App{
   val sc = spark.sparkContext
 
   //准备正则表达式
-//  val ipRegex = "((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))".r
-  val ipRegex ="((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))".r
+//  val ipRegex ="((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))".r
+  val ipRegex =
+              """((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d))))""".r
   val rdd = sc.textFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/" +
     "09_scala/scala_studying/cdn/cdn.txt")
       .map(perLine => (ipRegex.findFirstIn(perLine).get, 1))
