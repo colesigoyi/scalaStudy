@@ -1,6 +1,6 @@
 package cn.qf.day12.demo02_sharevar.sample02_accumulator.exam
 
-import cn.qf.day10.demo01_transformation.SparkUtil
+import cn.qf.util.SparkUtil
 import org.apache.spark.util.LongAccumulator
 
 /**

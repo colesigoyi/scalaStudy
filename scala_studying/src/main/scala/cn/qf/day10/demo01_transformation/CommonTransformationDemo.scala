@@ -1,5 +1,6 @@
 package cn.qf.day10.demo01_transformation
 
+import cn.qf.util.SparkUtil
 import org.apache.spark.{HashPartitioner, SparkContext}
 import org.apache.spark.rdd.RDD
 

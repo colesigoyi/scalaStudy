@@ -1,4 +1,4 @@
-package cn.qf.day10.demo01_transformation
+package cn.qf.util
 
 import org.apache.spark.sql.SparkSession
 
@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
  * Description：<br/>
  * Copyright (c) ,2019 , Xuefengtao <br/>
  * This program is protected by copyright laws. <br/>
- * Date： 2019年11月01日  
+ * Date： 2019年11月01日
  *
  * @author 陶雪峰
  * @version : 1.0

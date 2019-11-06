@@ -1,8 +1,8 @@
 package cn.qf.day12.demo03_ad.sample02_perprovinceperhourtop3
 
 import cn.qf.dao.impl.PerHourProvinceTop3Impl
-import cn.qf.day10.demo01_transformation.SparkUtil
 import cn.qf.entity.PerHourProvinceTop3
+import cn.qf.util.SparkUtil
 import org.joda.time.DateTime
 
 import scala.collection.mutable.ListBuffer

@@ -1,6 +1,6 @@
 package cn.qf.day12.demo03_ad.sample02_perprovinceperhourtop3
 
-import cn.qf.day10.demo01_transformation.SparkUtil
+import cn.qf.util.SparkUtil
 import org.joda.time.DateTime
 
 import scala.collection.mutable.ListBuffer

@@ -2,7 +2,7 @@ package cn.qf.day13.demo02_cache
 
 import java.net.URL
 
-import cn.qf.day10.demo01_transformation.SparkUtil
+import cn.qf.util.SparkUtil
 
 /**
  * Description：<br/>

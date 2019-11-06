@@ -1,6 +1,6 @@
 package cn.qf.day10.sample01_loc
 
-import cn.qf.day10.demo01_transformation.SparkUtil
+import cn.qf.util.SparkUtil
 
 
 /**

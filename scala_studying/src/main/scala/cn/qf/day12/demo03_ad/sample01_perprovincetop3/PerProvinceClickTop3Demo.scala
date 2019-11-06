@@ -1,6 +1,6 @@
 package cn.qf.day12.demo03_ad.sample01_perprovincetop3
 
-import cn.qf.day10.demo01_transformation.SparkUtil
+import cn.qf.util.SparkUtil
 
 /**
  * Description：<br/>
