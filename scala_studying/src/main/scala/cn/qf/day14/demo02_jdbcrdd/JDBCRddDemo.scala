@@ -18,13 +18,13 @@ object JDBCRddDemo {
     val sc = spark.sparkContext
 
     val rdd = new JdbcRDD(
-      sc,
-      () => DBCPUtil.getConnection,
+      sc,//Spark上下文实例
+      () => DBCPUtil.getConnection,//db连接的实例
       "select * from tb_per_hour_province_top3 where id >= ? and id <= ?",
       2,
       14,
-      2,
-      rs => {
+      2,//分区数
+      rs => { //函数类型,函数的参数类型是resultSet,封装了查询后的结果
         val id = rs.getInt("id")
         val province = rs.getString("province")
         val time = rs.getString("hour")

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+		<property>  
+		  <name>hive.metastore.warehouse.dir</name>  
+		  <value>/user/multiuserhive/warehouse</value>  
+		</property> 
+		<!--配置是否在本地开启memstore服务-->
+<!--		<property>  -->
+<!--		  <name>hive.metastore.local</name>  -->
+<!--		  <value>false</value>  -->
+<!--		</property>  -->
+		<!--配置元数据服务的url-->
+		<property>  
+		  <name>hive.metastore.uris</name>  
+		  <value>thrift://192.168.8.101:9083</value>  <!--linux1是hive服务器的ip-->
+		</property>  
+</configuration>
+
