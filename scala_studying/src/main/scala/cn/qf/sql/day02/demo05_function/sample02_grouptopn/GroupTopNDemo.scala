@@ -51,7 +51,7 @@ object GroupTopNDemo {
                  |tb_score
              |) s
          |) sc
-         |where rank <= 4
+         |where rank <= 3
         |""".stripMargin).show()
         /*
         +---------+-----+----+

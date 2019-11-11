@@ -9,13 +9,6 @@ package cn.qf.util;/**
  */
 
 
-/**
- * @ program: scala_studying
- * @ author:  TaoXueFeng
- * @ create: 2019-11-07 19:51
- * @ desc:  
- **/
-
 public class getBirth {
     private final static int[] dayArr = new int[] { 20, 19, 21, 20, 21, 22, 23,
             23, 23, 24, 23, 22 };
@@ -25,19 +18,16 @@ public class getBirth {
 
     /**
      * Java通过生日计算星座
-     *
      * @param month
      * @param day
      * @return
      */
     public static String getConstellation(int month, int day) {
         return day < dayArr[month - 1] ? constellationArr[month - 1]
-                : constellationArr[month];
-    }
+                : constellationArr[month]; }
 
     /**
      * 通过生日计算属相
-     *
      * @param year
      * @return
      */
