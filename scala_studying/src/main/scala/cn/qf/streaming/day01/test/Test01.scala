@@ -1,4 +1,4 @@
-package cn.qf.streaming.day01
+package cn.qf.streaming.day01.test
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{HashPartitioner, SparkConf, SparkContext}

@@ -23,9 +23,9 @@ object Demo01 {
       .setMaster("local[2]")
       .setAppName(Demo01.getClass.getSimpleName)
 
-    val ssc = new StreamingContext(conf, Seconds(15))
-//    val lines = ssc.socketTextStream("localhost", 7777)
-    val lines:DStream[(String, Int)] = ssc.textFileStream("hdfs://ns1/spark-streaming/myself/")
+    val sc = new StreamingContext(conf, Seconds(5))
+    val lines = sc.socketTextStream("192.168.8.101", 6666)
+//    val lines:DStream[(String, Int)] = ssc.textFileStream("hdfs://ns1/spark-streaming/myself/")
         .flatMap(_.split("\\s+"))
         .map((_,1))
         .reduceByKey(_ + _)
@@ -41,8 +41,8 @@ object Demo01 {
 //      classOf[IntWritable],
 //      classOf[TextOutputFormat[Text, IntWritable]]
 //    )
-    ssc.start()
-    ssc.awaitTermination()
+    sc.start()
+    sc.awaitTermination()
 
   }
 }

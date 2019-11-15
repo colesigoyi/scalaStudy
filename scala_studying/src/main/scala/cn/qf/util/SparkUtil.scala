@@ -2,6 +2,7 @@ package cn.qf.util
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.streaming.StreamingContext
 
 /**
  * Description：<br/>
@@ -13,7 +14,12 @@ import org.apache.spark.sql.SparkSession
  * @version : 1.0
  */
 object SparkUtil {
-  def getSparkConf: SparkConf = {
+  def getSparkConf(num: Int): SparkConf = {
+    new SparkConf()
+      .setMaster(s"local[${num}]")
+      .setAppName(this.getClass.getSimpleName)
+  }
+  def getSparkConf(): SparkConf = {
     new SparkConf()
       .setMaster("local[2]")
       .setAppName(this.getClass.getSimpleName)
@@ -41,5 +47,9 @@ object SparkUtil {
     else {
       getSparkSession(appName,master)
     }
+  }
+  def getStart(sc:StreamingContext) = {
+    sc.start()
+    sc.awaitTermination()
   }
 }
