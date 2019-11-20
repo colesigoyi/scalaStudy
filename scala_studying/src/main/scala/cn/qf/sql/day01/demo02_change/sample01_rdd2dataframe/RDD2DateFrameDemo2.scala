@@ -21,7 +21,8 @@ object RDD2DateFrameDemo2 {
     val sc = spark.sparkContext
 
     //方式2:RDD转DataFrame样例类方式
-    val rdd =sc.textFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/09_scala/scala_studying/sql/stu.txt")
+    val rdd =sc.textFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/" +
+      "09_scala/scala_studying/sql/stu.txt")
         .map(perLine => {
           val arr = perLine.split("\\s+")
           Student(arr(0).trim.toInt,arr(1).trim,arr(2).trim.toInt)

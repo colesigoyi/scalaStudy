@@ -21,14 +21,33 @@ object RDD2DateFrameDemo {
     val sc = spark.sparkContext
 
     //方式1:RDD转DataFrame元组方式
-    val rdd =sc.textFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/09_scala/scala_studying/sql/stu.txt")
+    val rdd =sc.textFile("file:////Users/taoxuefeng/Documents/02_StudyCoding/" +
+      "09_scala/scala_studying/sql/stu.txt")
         .map(perLine => {
           val arr = perLine.split("\\s+")
           (arr(0).trim.toInt,arr(1).trim,arr(2).trim.toInt)
         })
+    /*
+    1 jack 12
+    2 lucycat 18
+    3 angle 19
+    4 marry 28
+    5 lily 16
+     */
     import spark.implicits._
 
     rdd.toDF("id","name","age").show
+    /*
+    +---+-------+---+
+    | id|   name|age|
+    +---+-------+---+
+    |  1|   jack| 12|
+    |  2|lucycat| 18|
+    |  3|  angle| 19|
+    |  4|  marry| 28|
+    |  5|   lily| 16|
+    +---+-------+---+
+     */
 
     spark.stop()
   }

@@ -37,9 +37,6 @@ object AccumulatorDemo1 {
     //在Driver进程中读取累加器的值
     println(s"累加器中最终累积后的值是:${cntAccumulator.value}")  //累加器中最终累积后的值是:4
 
-
-
-
     spark.stop()
   }
 }
